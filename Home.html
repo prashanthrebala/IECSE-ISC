@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inter Section Coding</title>
+	<link rel="stylesheet" type="text/css" href="css/pr.css">
+	<link rel="stylesheet" type="text/css" href="css/fonts.css">
+
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/dbContent.js"></script>
+	<script type="text/javascript" src="js/jquery.countdown.min.js"></script>
+	<script type="text/javascript" src="js/sha256.js"></script>
+	<script type="text/javascript" src="js/questions.js"></script>
+	<script type="text/javascript" src="js/globalVars.js"></script>
+</head>
+<body>
+
+	<div id="gg">
+
+		<div id="successModal">
+			<div class="modalDiv" style="background-color: #27ae60;">
+				<div class="modalDivInner">Success</div>
+				<div align="center"><img src="img/tick.png" height="50px" width="50px"></div>
+			</div>
+		</div>
+
+		<div id="wrongAnswerModal">
+			<div class="modalDiv" style="background-color: #e74c3c;">
+				<div class="modalDivInner">Wrong Answer</div>
+				<div align="center"><img src="img/wrong.png" height="55px" width="55px"></div>
+			</div>
+		</div>
+
+		<div class="titleBar">
+			<div class="sideBarHeader">
+				Problems
+			</div>
+			<div id="appHeaderID" class="appHeader">
+				Inter Section Coding
+			</div>
+			<div id="scoreDisplayID" class="scoreDisplay">
+				<div class="scoreDisplayText"><div id="sDinner1">score: </div></div>
+				<div class="scoreDisplayNumeric"><div id="sDinner2">0</div></div>
+			</div>
+			<div id="statCheckID" class="statCheck" onclick="openNav();">
+					&#9776;
+			</div>
+		</div>
+
+		<div id="mySidenav" class="sidenav">
+			<div class="closebtn" onclick="closeNav()">&times;</div>
+			<hr>
+			<div class="sideNavScoreText">score: </div>
+			<div id="myScore"></div>
+			<hr>
+			<div class="timeRemaining">
+				<div class="timeRemainingText">time remaining:</div>
+				<div id="countDown"></div>
+			</div>
+			<hr>
+			<br>
+			<div>
+				<table align="center">
+					
+				</table>
+			</div>
+		</div>
+
+		<div class="content">
+			<div id="sideBarID" class="sideBar">  </div>
+			<div class="questionDisplay">
+				<div id="questionDescriptionID" class="questionDescription">
+					<b>Kaiser</b> is an app-based competitive coding event for the 1<sup>st</sup> and 2<sup>nd</sup> year students of MIT Manipal organized by IECSE<br>
+					The event consists of 17 progamming questions in Section A and 5 written programming questions in Section B<br>
+					<ul>
+						<li>Questions 1 - 4 are worth 10 points</li>
+						<li>Questions 5 - 8 are worth 20 points</li>
+						<li>Questions 9 - 13 are worth 30 points</li>
+						<li>Question 14 is worth 40 points</li>
+						<li>Question 15 is worth 50 points</li>
+						<li>Questions 16 and 17 are worth 80 points</li>
+						<li>The theory questions are each worth 30 points</li>
+					</ul>
+					<br><br>
+					<p align="center"><b>Click on any link on the left to view the question</b></p>
+				</div>
+				<div class="submissionZone">
+					<div style="width: 69%; float: left;">
+						<textarea placeholder="Enter your output here..." id="answerText"></textarea>
+					</div>
+					<div style="width: 10%; float: right;">
+						<button onclick="submit()" id="submitButton">Submit</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>
