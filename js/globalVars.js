@@ -57,6 +57,15 @@ function setVariables()
 
 }
 
+function obtainableScore(n)
+{
+	var timeElapsedInMinutes = Math.floor((new Date().getTime() - participant['startTimeStamp']) / 60000);
+	var penalties = questions[n]['penalties'];
+	var maxScore = questions[n]['score'];
+	return Math.floor(Math.max(maxScore * (1 - 0.01 * timeElapsedInMinutes - 0.05 * penalties), 
+									maxScore * 0.3));
+}
+
 function displayQuestion(n)
 {
 	currentQuestion = n;
@@ -118,21 +127,17 @@ function submitX(callback)
 	{
 		$('#successModal').delay(100).fadeIn();
 		$('#successModal').delay(300).fadeOut();
-		questions[currentQuestion]['attempts'] = -1;
 		$(id).css({'color' : '#37B76C'});
 		questions[currentQuestion]['solved'] = true;
-		var maxScore =  questions[currentQuestion]['score'];
-		var minutesPassed = Math.floor((new Date().getTime() - participant['startTimeStamp']) / 60000);
-		var obtainableScore = maxScore * (1 - minutesPassed * 0.01);
-		participant['score'] += obtainableScore;
+		participant['score'] += obtainableScore(currentQuestion);
 		$('#sDinner2').text(participant['score']);
 		callback();
 	}
-	else if(questions[currentQuestion]['attempts'] > 0)
+	else
 	{
 		$('#wrongAnswerModal').delay(100).fadeIn();
 		$('#wrongAnswerModal').delay(300).fadeOut();
-		questions[currentQuestion]['attempts']++;
+		questions[currentQuestion]['penalties']++;
 		$(id).css({'color' : '#FF3F2F'});
 		callback();
 	}
