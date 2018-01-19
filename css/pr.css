@@ -69,6 +69,11 @@ code {
 	font-size: 14px;
 }
 
+td {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
 #gg {
 
 	display: flex;
@@ -178,7 +183,7 @@ code {
 	font-size: 30px;
 	display: flex;
 	align-items: center;
-	padding-left: 370px;
+	justify-content: center;
 	box-shadow: 0px 2px 5px #333;
 
 }
@@ -266,6 +271,18 @@ code {
 	font-family: 'Calibri';
 }
 
+.sidenav::-webkit-scrollbar {
+    width: 6px;
+}
+ 
+.sidenav::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1px rgba(127,127,127,0.3); 
+}
+ 
+.sidenav::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
 .closebtn {
 	color: #eee;
     position: absolute;
@@ -312,6 +329,15 @@ code {
 	left: 53%;
 	font-size: 30px;
 	color: #ddd;
+}
+
+.sideNavTable {
+	text-align: center;
+	color: #eee;
+	border: 1px;
+	margin-top: 5px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .content {

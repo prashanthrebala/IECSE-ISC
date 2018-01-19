@@ -10,7 +10,7 @@ function dropSpaceChars(string)
 }
 
 /*
-QuestionA Link Format:
+Question Link Format:
 <div id="qn13" class="questionLink" onclick="displayQuestion(13)">
 	<div id="qn13T" class="questionNumber">
 		Question 13
@@ -49,8 +49,8 @@ function setVariables()
 		$(this).text("00:00:00");
 			// uncomment while deploying
 
-		$("#submitButton").css("pointer-events","none");
-		alert('Your time\'s up!');
+		// $("#submitButton").css("pointer-events","none");
+		// alert('Your time\'s up!');
 	});
 	// nwin.show();
 	// nwin.maximize();
@@ -66,10 +66,24 @@ function obtainableScore(n)
 									maxScore * 0.3));
 }
 
+function getTable()
+{
+	var tableContent = "<table class='sideNavTable'><td></td><td>Penalties</td><td>Score</td>";
+	for(let i=1;i<=numberOfQuestions;i++)
+	{
+		var td1 = "<td>Problem " + i + "</td>";
+		var td2 = "<td>" + questions[i]['penalties'] + "</td>";
+		var td3 = "<td>" + obtainableScore(i) + "</td>";
+		tableContent += "<tr>" + td1 + td2 + td3 + "</tr>";
+	}
+	tableContent += "</table>";
+	return tableContent;
+}
+
 function displayQuestion(n)
 {
 	currentQuestion = n;
-	// $('#appHeaderID').text("Question " + currentQuestion);
+	$('#appHeaderID').text("Question " + currentQuestion);
 	$('#questionDescriptionID').html(questions[currentQuestion]['questionStatement']);
 	$('#answerText').val('');
 }
@@ -77,7 +91,8 @@ function displayQuestion(n)
 function openNav()
 { 
 	$('#myScore').text(participant['score']);
-	$('#mySidenav').css({'width' : '23%', 'transition' : '0.3s'});
+	$('#tableOfScores').html(getTable());
+	$('#mySidenav').css({'width' : '28%', 'transition' : '0.3s'});
 }
 
 function closeNav()
