@@ -68,15 +68,15 @@ function obtainableScore(n)
 
 function getTable()
 {
-	var tableContent = "<table class='sideNavTable'><td></td><td>Penalties</td><td>Score</td>";
+	var tableContent = "<div class='tableOfScores'><div class='tableOfScoresRow'><div>Problem</div><div>Penalties</div><div>Score</div></div><hr>";
 	for(let i=1;i<=numberOfQuestions;i++)
 	{
-		var td1 = "<td>Problem " + i + "</td>";
-		var td2 = "<td>" + questions[i]['penalties'] + "</td>";
-		var td3 = "<td>" + obtainableScore(i) + "</td>";
-		tableContent += "<tr>" + td1 + td2 + td3 + "</tr>";
+		var div1 = "<div>" + i + "</div>";
+		var div2 = "<div>" + questions[i]['penalties'] + "</div>";
+		var div3 = "<div>" + (questions[i]['scored'] == 0 ? obtainableScore(i) : "<span style='color: #37B76C'>" + questions[i]['scored'] + "</span>") + "</div>";
+		tableContent += "<div class='tableOfScoresRow'>" + div1 + div2 + div3 + "</div><hr>";
 	}
-	tableContent += "</table>";
+	tableContent += "</div>";
 	return tableContent;
 }
 
@@ -91,7 +91,7 @@ function displayQuestion(n)
 function openNav()
 { 
 	$('#myScore').text(participant['score']);
-	$('#tableOfScores').html(getTable());
+	$('#tableOfScoresID').html(getTable());
 	$('#mySidenav').css({'width' : '28%', 'transition' : '0.3s'});
 }
 
@@ -144,9 +144,9 @@ function submitX(callback)
 		$('#successModal').delay(300).fadeOut();
 		$(id).css({'color' : '#37B76C'});
 		questions[currentQuestion]['solved'] = true;
-		participant['score'] += obtainableScore(currentQuestion);
+		questions[currentQuestion]['scored'] = obtainableScore(currentQuestion);
+		participant['score'] += questions[currentQuestion]['scored'];
 		$('#sDinner2').text(participant['score']);
-		callback();
 	}
 	else
 	{
@@ -154,9 +154,8 @@ function submitX(callback)
 		$('#wrongAnswerModal').delay(300).fadeOut();
 		questions[currentQuestion]['penalties']++;
 		$(id).css({'color' : '#FF3F2F'});
-		callback();
 	}
-
+	callback();
 }
 
 function launchApp()

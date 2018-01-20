@@ -12,7 +12,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 100,
-			'answer' : "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+			'answer' : "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+			'scored' : 0
 
 		},
 
@@ -23,7 +24,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 100,
-			'answer' : "157e121903e548067d08b9606cf1f431a97416a3184ea21f49f7c281ba95f432"
+			'answer' : "157e121903e548067d08b9606cf1f431a97416a3184ea21f49f7c281ba95f432",
+			'scored' : 0
 
 		},
 
@@ -34,7 +36,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 100,
-			'answer' : "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+			'answer' : "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+			'scored' : 0
 
 		},
 
@@ -45,7 +48,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 100,
-			'answer' : "6b879b57d21a10081c154e0810acd62ccd774ab020d8ace96ba29c5aef7cc3cf"
+			'answer' : "6b879b57d21a10081c154e0810acd62ccd774ab020d8ace96ba29c5aef7cc3cf",
+			'scored' : 0
 
 		},
 
@@ -56,7 +60,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 200,
-			'answer' : "1da51b8d8ff98f6a48f80ae79fe3ca6c26e1abb7b7d125259255d6d2b875ea08"
+			'answer' : "1da51b8d8ff98f6a48f80ae79fe3ca6c26e1abb7b7d125259255d6d2b875ea08",
+			'scored' : 0
 
 		},
 
@@ -67,7 +72,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 200,
-			'answer' : "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+			'answer' : "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d",
+			'scored' : 0
 
 		},
 
@@ -78,7 +84,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 200,
-			'answer' : "856c8111bfdfa7f9f802b27a92d53f8d6c75345696958cc1270a5cdd84fa1e86"
+			'answer' : "856c8111bfdfa7f9f802b27a92d53f8d6c75345696958cc1270a5cdd84fa1e86",
+			'scored' : 0
 
 		},
 
@@ -89,7 +96,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 200,
-			'answer' : "0fab1cc8fc20cc681c465a2e21edb9b7c1abbc5f5f655dc8f24dd0a47088d880"
+			'answer' : "0fab1cc8fc20cc681c465a2e21edb9b7c1abbc5f5f655dc8f24dd0a47088d880",
+			'scored' : 0
 
 		},
 
@@ -100,7 +108,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 300,
-			'answer' : "0ada723ed18ef712e6d733fac47d5604e94212028b42880512ff565038bbbb74"
+			'answer' : "0ada723ed18ef712e6d733fac47d5604e94212028b42880512ff565038bbbb74",
+			'scored' : 0
 
 		},
 
@@ -111,7 +120,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 300,
-			'answer' : "d347fd8668cb57047865775dd117c6b80a949da40c2497bc6008e1f658694413"
+			'answer' : "d347fd8668cb57047865775dd117c6b80a949da40c2497bc6008e1f658694413",
+			'scored' : 0
 
 		},
 
@@ -122,7 +132,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 300,
-			'answer' : "6114506a772204f755e6216ee3b0b3fd5603f72fac7dc2c125bfd387d326fcef"
+			'answer' : "6114506a772204f755e6216ee3b0b3fd5603f72fac7dc2c125bfd387d326fcef",
+			'scored' : 0
 
 		},
 
@@ -133,7 +144,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 300,
-			'answer' : "ad0315a8eae0b7153c2a91d9be97736cfba72622987f80371bedec4ce160bb19"
+			'answer' : "ad0315a8eae0b7153c2a91d9be97736cfba72622987f80371bedec4ce160bb19",
+			'scored' : 0
 
 		},
 
@@ -145,6 +157,7 @@ var questions =
 			'attempted' : false,
 			'score' : 300,
 			'answer' : "3cf49d33608edba480c91f4247780c2ccefedc41b16c39d5a317a6e2c2843985",
+			'scored' : 0
 
 		},
 
@@ -155,7 +168,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 400,
-			'answer' : "fc9ec5de6611ac87b104ab48a9c09ae21ad78474f9fe64150ac557051ff4ee21"
+			'answer' : "fc9ec5de6611ac87b104ab48a9c09ae21ad78474f9fe64150ac557051ff4ee21",
+			'scored' : 0
 
 		},
 		
@@ -166,7 +180,8 @@ var questions =
 			'solved' : false,
 			'attempted' : false,
 			'score' : 500,
-			'answer' : "6c7198493d1c645182a5ae2f4cf89fba8331d66611aec95a0bf5d1fbf3f8427b"
+			'answer' : "6c7198493d1c645182a5ae2f4cf89fba8331d66611aec95a0bf5d1fbf3f8427b",
+			'scored' : 0
 
 		}
 

@@ -69,11 +69,6 @@ code {
 	font-size: 14px;
 }
 
-td {
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
 #gg {
 
 	display: flex;
@@ -331,13 +326,26 @@ td {
 	color: #ddd;
 }
 
-.sideNavTable {
+.tableOfScores {
 	text-align: center;
 	color: #eee;
-	border: 1px;
 	margin-top: 5px;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.tableOfScoresRow {
+	height: 30px;
+	display: flex;
+	justify-content: center;
+}
+
+.tableOfScoresRow > div {
+	height: 30px;
+	width: 33%;
+	display: flex;
+  	align-items: center;
+  	justify-content:center;
 }
 
 .content {
