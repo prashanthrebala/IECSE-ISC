@@ -112,7 +112,7 @@ code {
 	font-size: 120px;
 }
 
-#successModal, #wrongAnswerModal {
+#successModal, #wrongAnswerModal, #disqualifiedModal {
 
 	display: none; 
     position: fixed;

@@ -18,8 +18,11 @@ Question Link Format:
 </div>
 */
 
+var randomCounter = 0;
+
 function setVariables()
 {
+
 	var questionLinksHTML = "<hr style='width: 100%;'>";
 	for(let i=1;i<=numberOfQuestions;i++)
 	{
@@ -43,17 +46,57 @@ function setVariables()
 	{
 		var format = '%H:%M:%S';
 		$(this).html(event.strftime(format));
+		randomCounter++;
+		randomCounter %= 10;
+		if(randomCounter == 0 && new Date().getTime() < participant['latestTimeStamp'] && !participant['cheated'])
+		{
+			participant['cheated'] = true;
+			alert('The system time has been changed.');
+			$("#submitButton").css("pointer-events","none");
+			$("#disqualifiedModal").show();
+			openNav();
+			db.remove({}, { multi: true }, function (err, numRemoved) 
+			{
+				db.insert(
+				{
+					participant: participant,
+					questions: questions
+				}, function(err, newDocs){
+					console.log(err);
+					console.log(newDocs);
+				});
+			});
+		}
+		if(randomCounter == 0 && new Date().getTime() - participant['latestTimeStamp'] >= 60000)
+		{
+			participant['latestTimeStamp'] = new Date().getTime();
+			db.remove({}, { multi: true }, function (err, numRemoved) 
+			{
+				db.insert(
+				{
+					participant: participant,
+					questions: questions
+				}, function(err, newDocs){
+					console.log(err);
+					console.log(newDocs);
+				});
+			});
+		}
+
 	})
 	.on('finish.countdown', function(event) 
 	{
 		$(this).text("00:00:00");
-			// uncomment while deploying
-
-		// $("#submitButton").css("pointer-events","none");
-		// alert('Your time\'s up!');
+		$("#submitButton").css("pointer-events","none");
+		alert('Your time\'s up!');
 	});
-	// nwin.show();
-	// nwin.maximize();
+
+	if(participant['cheated'])
+	{
+		$("#disqualifiedModal").show();
+		openNav();
+		return;
+	}
 
 }
 
@@ -82,9 +125,10 @@ function getTable()
 
 function displayQuestion(n)
 {
+	closeNav();
 	currentQuestion = n;
 	$('#appHeaderID').text("Question " + currentQuestion);
-	$('#questionDescriptionID').html(questions[currentQuestion]['questionStatement']);
+	$('#questionDescriptionID').html(questionStatements[currentQuestion]);
 	$('#answerText').val('');
 }
 
@@ -102,17 +146,17 @@ function submit()
 {
 	submitX(function()
 	{
-		// db.remove({}, { multi: true }, function (err, numRemoved) 
-		// {
-		// 	db.insert(
-		// 	{
-		// 		participant: participant,
-		// 		questions: questions
-		// 	}, function(err, newDocs){
-		// 		console.log(err);
-		// 		console.log(newDocs);
-		// 	});
-		// });
+		db.remove({}, { multi: true }, function (err, numRemoved) 
+		{
+			db.insert(
+			{
+				participant: participant,
+				questions: questions
+			}, function(err, newDocs){
+				console.log(err);
+				console.log(newDocs);
+			});
+		});
 	});
 }
 
@@ -120,7 +164,7 @@ function submitX(callback)
 {
 	var typedAnswer = $('#answerText').val();
 
-	if(currentQuestion <= 0 || questions[currentQuestion]['solved'])
+	if(currentQuestion <= 0 || questions[currentQuestion]['solved'] || participant['cheated'])
 		return callback();
 
 	questions[currentQuestion]['attempted'] = true;
@@ -132,13 +176,15 @@ function submitX(callback)
 	if(typedAnswer.length <= 0)
 		return callback();
 
-	if(participant['submissionHistory'][currentQuestion].indexOf(typedAnswer) >= 0)
+	var hashedAnswer = Sha256.hash(typedAnswer);
+
+	if(participant['submissionHistory'][currentQuestion].indexOf(hashedAnswer) >= 0)
 		if(!confirm("You have already submitted this answer for this question. Are you sure you want to submit again?"))
 			return callback();
 
-	participant['submissionHistory'][currentQuestion].push(typedAnswer);
+	participant['submissionHistory'][currentQuestion].push(hashedAnswer);
 
-	if(Sha256.hash(typedAnswer) === questions[currentQuestion]['answer']) 
+	if(hashedAnswer === questions[currentQuestion]['answer']) 
 	{
 		$('#successModal').delay(100).fadeIn();
 		$('#successModal').delay(300).fadeOut();
@@ -160,27 +206,28 @@ function submitX(callback)
 
 function launchApp()
 {
-	// db.find({}, function(err, docs)
-	// {
-	// 	if(docs.length == 0)
-	// 	{
+	db.find({}, function(err, docs)
+	{
+		if(docs.length == 0)
+		{
 			participant['startTimeStamp'] = new Date().getTime();
+			participant['latestTimeStamp'] = participant['startTimeStamp'];
 			participant['endTimeStamp']   = participant['startTimeStamp'] + duration * 60000;
-	// 		db.insert(
-	// 		{
-	// 			participant: participant,
-	// 			questions: questions
-	// 		},function(err, newDocs){	setVariables();	});
-	// 	}
-	// 	else
-	// 	{
-	// 		participant = docs[0].participant;
-	// 		questions   = docs[0].questions;
+			db.insert(
+			{
+				participant: participant,
+				questions: questions
+			},function(err, newDocs){	setVariables();	});
+		}
+		else
+		{
+			participant = docs[0].participant;
+			questions   = docs[0].questions;
 
-	// 		$('#sDinner2').text(participant['score']);
+			$('#sDinner2').text(participant['score']);
 			setVariables();
-	// 	}
-	// });
+		}
+	});
 }
 
 $(document).ready(function() 
@@ -189,5 +236,5 @@ $(document).ready(function()
 	catch(err){ console.log(err); }
 });
 
-// document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('contextmenu', event => event.preventDefault());
 

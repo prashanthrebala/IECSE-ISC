@@ -9,7 +9,7 @@ function validatePassword()
 {
 	var pass = $("#appPassCode").val();
 	$("#appPassCode").val('');
-	return Sha256.hash(pass) === "2cd9806015c95a30962f40a0c5747e913658576947eae167c2517a67a1ee345e";
+	return pass === "se7en";
 }
 
 $(document).ready(function()
@@ -18,10 +18,12 @@ $(document).ready(function()
 	{
 		if(docs.length != 0)
 		{
-			$('#appPassCode').val('kaiser1601');
+			$('#appPassCode').val('se7en');
 			$('#enterApp').trigger('click');
 		}
 	});
+	nwin.show();
+	nwin.maximize();
 });
 
 document.addEventListener('contextmenu', event => event.preventDefault());
